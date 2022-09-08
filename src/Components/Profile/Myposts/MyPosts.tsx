@@ -1,18 +1,22 @@
 import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {postDataProps} from "../../../index";
-type MyPostsPropsType = {
-    postData:Array<postDataProps>
+import {postDataProps} from "../../../redux/state";
+
+export type MyPostsPropsType = {
+    postData: Array<postDataProps>
+    addPost:(postMessage: string)=> void
 }
 
-export const MyPosts = (props:MyPostsPropsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
     let postElements = props.postData.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
     let postMessageRef = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = ()=> {
-        alert(postMessageRef.current ?.value)
+    const addPost = () => {
+        if (postMessageRef.current) {
+            props.addPost(postMessageRef.current.value)
+        }
     }
     return <div className={classes.postsBlock}>
         <h3>My posts</h3>
@@ -21,7 +25,7 @@ export const MyPosts = (props:MyPostsPropsType) => {
                 <textarea ref={postMessageRef}></textarea>
             </div>
             <div>
-            <button onClick={addPost}>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
         </div>
 
