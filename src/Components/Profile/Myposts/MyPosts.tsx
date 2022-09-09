@@ -15,7 +15,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     const addPost = () => {
         if (postMessageRef.current) {
-            props.addPost(postMessageRef.current.value)
+            props.addPost(postMessageRef.current.value);
+
         }
     }
     return <div className={classes.postsBlock}>

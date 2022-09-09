@@ -1,3 +1,5 @@
+import {renderTree} from "../render";
+
 export type postDataProps = {
     id:number,
     message:string,
@@ -47,4 +49,5 @@ export const addPost = (postMessage: string) => {
         likesCount: 0
     }
     state.postData.push(newPost);
+    renderTree(state);
 }
