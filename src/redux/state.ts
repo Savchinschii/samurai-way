@@ -17,6 +17,7 @@ export type statePropsType = {
     dialogs:Array<dialogsPropsType>,
     messages:Array<messagePropsType>,
     postData:Array<postDataProps>
+    newPostText: string
 }
 export const state: statePropsType = {
     dialogs : [
@@ -40,6 +41,7 @@ export const state: statePropsType = {
         {id:1, message:'Hello my friend', likesCount : 23},
         {id:2, message:'How are you?', likesCount: 2322}
     ],
+    newPostText : ' '
 }
 
 export const addPost = (postMessage: string) => {
@@ -49,5 +51,10 @@ export const addPost = (postMessage: string) => {
         likesCount: 0
     }
     state.postData.push(newPost);
+    renderTree(state);
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.newPostText = newText;
     renderTree(state);
 }
