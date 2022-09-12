@@ -1,4 +1,12 @@
-import {renderTree} from "../render";
+
+let onChange = () => {
+    console.log('hello')
+}
+
+export const subscribe = (callback: ()=> void) => {
+    onChange = callback
+}
+
 
 export type postDataProps = {
     id:number,
@@ -44,17 +52,17 @@ export const state: statePropsType = {
     newPostText : ' '
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost: postDataProps = {
         id: new Date().getTime(),
-        message: postMessage,
+        message: state.newPostText,
         likesCount: 0
     }
     state.postData.push(newPost);
-    renderTree(state);
+    onChange();
 }
 
 export const updateNewPostText = (newText: string) => {
     state.newPostText = newText;
-    renderTree(state);
+    onChange();
 }

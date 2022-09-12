@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
-import {addPost, statePropsType, updateNewPostText} from "./redux/state";
+import {addPost,  updateNewPostText} from "./redux/state";
+import {state} from "./redux/state";
 
-export const renderTree = (state: statePropsType) => {
+export const renderTree = () => {
     const root = ReactDOM.createRoot(
         document.getElementById('root') as HTMLElement
     );
